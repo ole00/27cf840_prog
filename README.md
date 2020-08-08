@@ -209,7 +209,7 @@ RDY pin is optional, it can speed up writing by up to ~20% and also provides mor
 operation.  If you chose not to use the RDY pin then wou have to use '-slow' parameter during writing.
 
 In summary: 
-* 29CF800 module does not require WE# nor RDY pin holes to be connecteds. But using RDY pin ensures
+* 29CF800 module does not require WE# nor RDY pin holes to be connected. But using RDY pin ensures
   more reliable writing.
 * 29CF400 module requires WE# pin connected. RDY pin is optional.
 
@@ -225,7 +225,7 @@ Wiring during programming the 29CF400 module:
 ![module wiring](https://github.com/ole00/27cf840_prog/raw/master/img/module_wiring.jpg "27CF400 module wiring")
 
 You can order the module PCBs in you favourite PCB fab service. The gerber files are located in
-gerbers directory. Use either 27cf840a.zip (lip on tge bottom) or 27cf840b.zip (lip on the top) or
+gerbers directory. Use either 27cf840a.zip (lip on the bottom) or 27cf840b.zip (lip on the top) or
 use 27cf840_rep_0_3ab_fab.zip which contains both of them (2 x a + 2 x b) panelised. 
 These are 2 layer boards that fit within 100 x 100 mm limit.
 
