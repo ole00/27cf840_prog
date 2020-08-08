@@ -32,7 +32,7 @@ A: read on!
 ## How it works
 
 You'll need to build one or more IC replacement modules (I call them 27cf800 and 27cf400,
-because they use a flash part) and one programmer. The modules themselves are more-or less a
+because they use a flash part) and one programmer. The modules themselves are more-or-less a
 break-out board for 29F800 and 29F400 IC that's electrically compatible with the originals.
 
 The programmer is based on CH552T MCU that handles communication with a PC via
@@ -45,7 +45,7 @@ through hole pins.
 
 So, in order to setup and opertate the programmer, you will need to:
 
-* compile and upload the ch552T firmware (or download a prebuilt binary - not available right now)
+* compile and upload the ch552T firmware (or download a prebuilt binary - not available right now).
 Firmware upload needs to be done only once, typically after you build the programmer board.
 That's done via USB itself, it's not very complicated once you have the right tools.
 You can either install the whole SDK for the CH552 chip (https://github.com/Blinkinlabs/ch554_sdcc.git)
@@ -53,7 +53,7 @@ and compile the firmware yourself, or you can just upload the firmware binary vi
 that is available here (https://github.com/rgwan/librech551.git). I'll precompile and release the
 firmware for your convenience as well.
 
-* compile the pc software (or download a prebuild binary  - not available just now). 
+* compile the pc software (or download a prebuild binary - not available just now). 
 To compile the pc tool the 'compile_pc.sh' shell script. It expects you have gcc and libusb-1.0
 installed on you PC. This should work on Linux (including Raspberry Pi), MacOS and other OS'es.
 I'll precompile and release Win64 binaries for your convenience as well. 
@@ -62,7 +62,7 @@ I'll precompile and release Win64 binaries for your convenience as well.
 
 Uploading firmware to MCU is done only once, typically after you build the programmer board or 
 if there is a firmware update. The MCU mini-board has two pins next to MCU itself marked
-as PROG, these need to be shortened (by a metal paper clip or by using fine tweezers) while
+as PROG, these need to be shorted/connected together (by a metal paper clip or by using fine tweezers) while
 the module is plugged in to your PC. That will force the MCU to stay in bootloader,
 which allows the firmware to be uploaded via USB. To verify the  MCU is in bootloader use
 'lsusb' command and check the device 4348:55e0 is in the printed list. 
@@ -72,7 +72,7 @@ Device 017: ID 4348:55e0 WinChipHead
 
 Then you need to upload the firmware binray like that:
 <pre>
-sudo ./wchisptool -f <path>/cf840prog.bin -g
+sudo ./wchisptool -f path/cf840prog.bin -g
 </pre>
 
 If the command succeeds you should see the following text on the console:
@@ -143,7 +143,7 @@ size of 64 bytes. Therefore for 1 Mbyte module use 16384 blocks, for 512 Kbyte m
   The '-r 16384' means to read 16384 blocks and '> data.bin' means to store the output
 into data.bin file.
 
-* To write a file into the flash chip module you need to erase it first. Use the followin
+* To write a file into the flash chip module you need to erase it first. Use the following
 command:
   <pre>
   ./prog_pc -erase
@@ -166,15 +166,16 @@ command:
   During writing a progress statistic is printed on the console. Writing does not check the written
   content so after the writing is finished you should read the contents back and compare it via
   'cmp' command. The '-slow' parameter is a compatibility option, it lets you to use flash 
-  chip modules without the Ready/Busy pin being connected. See 'Building flash modules' paragraph for more  
-  information about Ready/Busy signal.
+  chip modules without the Ready/Busy pin being connected.
+  
+  See 'Building flash modules' for more information about Ready/Busy signal.
 
 ## Building flash modules
 
 Flash modules use 29F800 (1 MByte) or 29F400 (512 kByte) SOP IC chip for storing the data. You should be 
-able to use any brand, they seem to be compatible. Just make sure they are 5V compatible. So far
-I've used Macronix MX29F800 and MX29F400, Fujitsu MBM29F800 and Amd AM29F800 and AM29F400. 
-There are other brands like ST (M29F800), Hynix HY29F800 and others I have not tested. 
+able to use any brand, they seem to use the same programming protocol. Just make sure they are 5V 
+compatible. So far I've used Macronix MX29F800 and MX29F400, Fujitsu MBM29F800 and Amd AM29F800
+and AM29F400. There are other brands like ST (M29F800), Hynix HY29F800 and others I have not tested. 
 
 When chosing the chip ensure its speedrating matches the speed rating of the chip you try to replace.
 The speed rating is specified after dash of the IC part name. For example -55 means speed 
